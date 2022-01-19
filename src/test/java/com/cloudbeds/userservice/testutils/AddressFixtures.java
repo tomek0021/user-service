@@ -1,4 +1,4 @@
-package com.cloudbeds.userservice.utils;
+package com.cloudbeds.userservice.testutils;
 
 
 import com.cloudbeds.userservice.domain.Address;

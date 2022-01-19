@@ -1,6 +1,6 @@
 package com.cloudbeds.userservice.domain;
 
-import com.cloudbeds.userservice.utils.AddressFixtures;
+import com.cloudbeds.userservice.testutils.AddressFixtures;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
