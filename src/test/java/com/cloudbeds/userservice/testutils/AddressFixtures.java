@@ -5,6 +5,7 @@ import com.cloudbeds.userservice.domain.Address;
 import com.cloudbeds.userservice.domain.User;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.function.BiConsumer;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -14,12 +15,15 @@ import java.util.stream.IntStream;
  */
 public class AddressFixtures {
 
+    public static final BiConsumer<Integer, Address.AddressBuilder> NO_OP = (i, a) -> { };
+
     public static Address createAddress() {
         return defaultAddressBuilder().build();
     }
 
     private static Address.AddressBuilder defaultAddressBuilder() {
         return Address.builder()
+                .id(UUID.randomUUID())
                 .addressLine1("address line 1")
                 .addressLine2("address line 2")
                 .state("Radom")
@@ -40,4 +44,7 @@ public class AddressFixtures {
                 .collect(Collectors.toList());
     }
 
+    public static List<Address> createAddresses(int count, User user) {
+        return createAddresses(count, user, NO_OP);
+    }
 }

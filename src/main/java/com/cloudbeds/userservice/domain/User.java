@@ -27,7 +27,7 @@ public class User {
     private UUID id;
     private String firstName;
     private String lastName;
-    @Column(unique = true)
+//    @Column(unique = true) it's make sense to leave it but it's not a requirement now
     private String email;
     private String password;
 

@@ -3,11 +3,14 @@ syntax = "proto3";
 package com.cloudbeds.userservice;
 
 option java_multiple_files = true;
-option java_package = "com.cloudbeds.userservice.rest";
+option java_package = "com.cloudbeds.userservice.grpc";
 option java_outer_classname = "UserServiceProto";
 
 service UserService {
     rpc CreateUser (CreateUserRequest) returns (CreateUserResponse) {
+    }
+
+    rpc FindUsersFromCountry (FindUsersFromCountryRequest) returns (UserListResponse) {
     }
 }
 
@@ -31,4 +34,32 @@ message CreateAddressRequest {
 
 message CreateUserResponse {
     string id = 1;
+}
+
+message FindUsersFromCountryRequest {
+    string country = 1;
+}
+
+message UserListResponse {
+    repeated User users = 1;
+}
+
+message User {
+    string id = 1;
+    string firstName = 2;
+    string lastName = 3;
+    string email = 4;
+    string password = 5;
+
+    repeated Address addresses = 6;
+}
+
+message Address {
+    string id = 1;
+    string addressLine1 = 2;
+    string addressLine2 = 3;
+    string city = 4;
+    string state = 5;
+    string zip = 6;
+    string country = 7;
 }
