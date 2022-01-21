@@ -1,7 +1,7 @@
 # user-service
 
 Java project using spring-boot and h2 in-memory database. User spring-data-jpa for handling data part. For rest I've
-used spring-data-rest - I know it break encapsulation a lot but didn't want to spend too much time on this, and in fact it
+used spring-data-rest - I know it breaks encapsulation a lot but didn't want to spend too much time on this, and in fact it
 would be unneseccary layer for a project like this.
 
 Build with gradle.
@@ -50,7 +50,7 @@ grpcurl --plaintext -d '{"country": "Poland"}' localhost:9090 com.cloudbeds.user
 ```
 
 
-#### gRPC with proto
+#### gRPC with avro
 
 ##### Finding users per id (does NOT work: 'server does not support the reflection API' - couldn't find ReflectionService for avro)
 ```shell 
