@@ -27,14 +27,10 @@ public class User {
     private UUID id;
     private String firstName;
     private String lastName;
-//    @Column(unique = true) it's make sense to leave it but it's not a requirement now
+//    @Column(unique = true) it make sense to leave it but it's not a requirement now
     private String email;
     private String password;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Address> addresses = new ArrayList<>();
-
-    public void addAddress(Address address) {
-        addresses.add(address);
-    }
 }

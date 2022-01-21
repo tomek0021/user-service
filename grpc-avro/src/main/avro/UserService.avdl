@@ -1,0 +1,25 @@
+@namespace("com.cloudbeds.userservice.avrogrpc")
+protocol UserService {
+
+  record User {
+    string id;
+    string firstName;
+    string lastName;
+    string email;
+    string password;
+
+    array<Address> addresses;
+  }
+
+  record Address {
+      string id;
+      string addressLine1;
+      string addressLine2;
+      string city;
+      string state;
+      string zip;
+      string country;
+    }
+
+  User getUser(string id);
+}

@@ -1,4 +1,4 @@
-package com.cloudbeds.userservice.grpc;
+package com.cloudbeds.userservice.protogrpc;
 
 import com.cloudbeds.userservice.domain.Address;
 import com.cloudbeds.userservice.domain.User;
@@ -42,7 +42,7 @@ class GrpcDomainTransformerTest {
         User user = UserFixtures.createUserWithAddresses(1);
 
         // when
-        com.cloudbeds.userservice.grpc.User grpcUser = transformer.mapUser(user);
+        com.cloudbeds.userservice.protogrpc.User grpcUser = transformer.mapUser(user);
 
         // then
         assertThat(grpcUser.getFirstName()).isEqualTo(user.getFirstName());

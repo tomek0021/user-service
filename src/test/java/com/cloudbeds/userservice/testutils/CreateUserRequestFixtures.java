@@ -1,7 +1,7 @@
 package com.cloudbeds.userservice.testutils;
 
-import com.cloudbeds.userservice.grpc.CreateAddressRequest;
-import com.cloudbeds.userservice.grpc.CreateUserRequest;
+import com.cloudbeds.userservice.protogrpc.CreateAddressRequest;
+import com.cloudbeds.userservice.protogrpc.CreateUserRequest;
 
 import java.util.UUID;
 import java.util.function.Consumer;

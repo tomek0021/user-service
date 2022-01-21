@@ -1,4 +1,4 @@
-package com.cloudbeds.userservice.grpc;
+package com.cloudbeds.userservice.protogrpc;
 
 import com.cloudbeds.userservice.domain.User;
 import com.cloudbeds.userservice.domain.UserRepository;
@@ -13,7 +13,7 @@ import java.util.UUID;
 @Slf4j
 @GrpcService
 @RequiredArgsConstructor
-public class UserService extends UserServiceGrpc.UserServiceImplBase {
+class UserService extends UserServiceGrpc.UserServiceImplBase {
 
     private final UserRepository userRepository;
     private final GrpcDomainTransformer transformer;

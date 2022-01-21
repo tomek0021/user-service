@@ -1,4 +1,4 @@
-package com.cloudbeds.userservice.grpc;
+package com.cloudbeds.userservice.protogrpc;
 
 import com.cloudbeds.userservice.domain.User;
 import com.cloudbeds.userservice.domain.UserRepository;
@@ -85,6 +85,4 @@ class UserServiceTest {
         verify(responseObserver).onNext(responseCaptor.capture());
         return responseCaptor.getValue();
     }
-
-
 }

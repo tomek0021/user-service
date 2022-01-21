@@ -1,3 +1,4 @@
 rootProject.name = 'user-service'
 
-include 'grpc-interface'
+include 'grpc-proto'
+include 'grpc-avro'

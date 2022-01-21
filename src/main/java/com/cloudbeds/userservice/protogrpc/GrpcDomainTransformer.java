@@ -1,4 +1,4 @@
-package com.cloudbeds.userservice.grpc;
+package com.cloudbeds.userservice.protogrpc;
 
 import com.cloudbeds.userservice.domain.User;
 import org.springframework.stereotype.Component;
@@ -28,8 +28,8 @@ class GrpcDomainTransformer {
                 .build();
     }
 
-    com.cloudbeds.userservice.grpc.User mapUser(User user) {
-        com.cloudbeds.userservice.grpc.User.Builder builder = com.cloudbeds.userservice.grpc.User.newBuilder()
+    com.cloudbeds.userservice.protogrpc.User mapUser(User user) {
+        com.cloudbeds.userservice.protogrpc.User.Builder builder = com.cloudbeds.userservice.protogrpc.User.newBuilder()
                 .setId(user.getId().toString())
                 .setFirstName(user.getFirstName())
                 .setLastName(user.getLastName())
@@ -39,8 +39,8 @@ class GrpcDomainTransformer {
         return builder.build();
     }
 
-    private com.cloudbeds.userservice.grpc.Address mapAddress(com.cloudbeds.userservice.domain.Address address) {
-        return com.cloudbeds.userservice.grpc.Address.newBuilder()
+    private com.cloudbeds.userservice.protogrpc.Address mapAddress(com.cloudbeds.userservice.domain.Address address) {
+        return com.cloudbeds.userservice.protogrpc.Address.newBuilder()
                 .setId(address.getId().toString())
                 .setAddressLine1(address.getAddressLine1())
                 .setAddressLine2(address.getAddressLine2())

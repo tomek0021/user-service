@@ -17,10 +17,6 @@ public class AddressFixtures {
 
     public static final BiConsumer<Integer, Address.AddressBuilder> NO_OP = (i, a) -> { };
 
-    public static Address createAddress() {
-        return defaultAddressBuilder().build();
-    }
-
     private static Address.AddressBuilder defaultAddressBuilder() {
         return Address.builder()
                 .id(UUID.randomUUID())
@@ -42,9 +38,5 @@ public class AddressFixtures {
                 })
                 .map(Address.AddressBuilder::build)
                 .collect(Collectors.toList());
-    }
-
-    public static List<Address> createAddresses(int count, User user) {
-        return createAddresses(count, user, NO_OP);
     }
 }

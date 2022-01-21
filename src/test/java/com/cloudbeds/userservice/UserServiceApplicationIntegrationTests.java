@@ -1,14 +1,20 @@
 package com.cloudbeds.userservice;
 
-import com.cloudbeds.userservice.grpc.CreateUserResponse;
-import com.cloudbeds.userservice.grpc.FindUsersFromCountryRequest;
-import com.cloudbeds.userservice.grpc.UserListResponse;
-import com.cloudbeds.userservice.grpc.UserServiceGrpc;
+import com.cloudbeds.userservice.avrogrpc.UserService;
+import com.cloudbeds.userservice.protogrpc.CreateUserResponse;
+import com.cloudbeds.userservice.protogrpc.FindUsersFromCountryRequest;
+import com.cloudbeds.userservice.protogrpc.UserListResponse;
+import com.cloudbeds.userservice.protogrpc.UserServiceGrpc;
+import io.grpc.ManagedChannel;
+import io.grpc.ManagedChannelBuilder;
 import net.devh.boot.grpc.client.inject.GrpcClient;
+import org.apache.avro.grpc.AvroGrpcClient;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 
+import static com.cloudbeds.userservice.testutils.CreateUserRequestFixtures.createCreateUserRequest;
 import static com.cloudbeds.userservice.testutils.CreateUserRequestFixtures.createUserRequestWithAddress;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -18,10 +24,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 		"grpc.client.inProcess.address=in-process:test" // Configure the client to connect to the inProcess server
 })
 @DirtiesContext
-class UserServiceApplicationTests {
+class UserServiceApplicationIntegrationTests {
 
 	@GrpcClient("inProcess")
 	private UserServiceGrpc.UserServiceBlockingStub userServiceClient;
+
+	@Value("${user-service.avro-grpc.port}")
+	private int avroGrpcPort;
 
 	@Test
 	void testGrpcCreateAndThenFindByCountryUserE2e() throws InterruptedException {
@@ -40,7 +49,26 @@ class UserServiceApplicationTests {
 
 		// then
 		assertThat(response.getUsersList()).hasSize(1)
-				.extracting(com.cloudbeds.userservice.grpc.User::getId).containsExactly(user2.getId());
+				.extracting(com.cloudbeds.userservice.protogrpc.User::getId).containsExactly(user2.getId());
+	}
+
+
+	@Test
+	void testAvroGrpc() {
+		// given
+		UserService stub = createAvroGrpcClient();
+		CreateUserResponse user = userServiceClient.createUser(createCreateUserRequest());
+
+		// when
+		com.cloudbeds.userservice.avrogrpc.User avroUser = stub.getUser(user.getId());
+
+		// then
+		assertThat(avroUser.getId()).isEqualTo(user.getId());
+	}
+
+	private UserService createAvroGrpcClient() {
+		ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", avroGrpcPort).usePlaintext().build();
+		return AvroGrpcClient.create(channel, UserService.class);
 	}
 
 }
