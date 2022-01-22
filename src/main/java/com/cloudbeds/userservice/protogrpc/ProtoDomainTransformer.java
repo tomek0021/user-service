@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 import java.util.stream.Collectors;
 
 @Component
-class GrpcDomainTransformer {
+class ProtoDomainTransformer {
 
     com.cloudbeds.userservice.domain.User mapCreateUserRequestToDomainUser(CreateUserRequest request) {
         com.cloudbeds.userservice.domain.User user = new com.cloudbeds.userservice.domain.User(request.getFirstName(), request.getLastName(), request.getEmail(), request.getPassword());

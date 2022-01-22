@@ -10,10 +10,10 @@ import java.util.UUID;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
-class UserServiceImplTest {
+class AvroUserServiceTest {
 
     private UserRepository userRepository = mock(UserRepository.class);
-    private UserServiceImpl userService = new UserServiceImpl(userRepository);
+    private AvroUserService userService = new AvroUserService(userRepository);
 
     @Test
     void callsRepositoryToGetUser() {

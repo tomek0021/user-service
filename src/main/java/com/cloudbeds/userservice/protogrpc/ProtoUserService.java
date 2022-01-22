@@ -13,10 +13,10 @@ import java.util.UUID;
 @Slf4j
 @GrpcService
 @RequiredArgsConstructor
-class UserService extends UserServiceGrpc.UserServiceImplBase {
+class ProtoUserService extends UserServiceGrpc.UserServiceImplBase {
 
     private final UserRepository userRepository;
-    private final GrpcDomainTransformer transformer;
+    private final ProtoDomainTransformer transformer;
 
     @Override
     @Transactional

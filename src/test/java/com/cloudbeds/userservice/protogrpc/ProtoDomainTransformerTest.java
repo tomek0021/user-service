@@ -8,9 +8,9 @@ import org.junit.jupiter.api.Test;
 import static com.cloudbeds.userservice.testutils.CreateUserRequestFixtures.createCreateUserRequest;
 import static org.assertj.core.api.Assertions.assertThat;
 
-class GrpcDomainTransformerTest {
+class ProtoDomainTransformerTest {
 
-    private GrpcDomainTransformer transformer = new GrpcDomainTransformer();
+    private ProtoDomainTransformer transformer = new ProtoDomainTransformer();
 
     @Test
     void createUserMapsCreateUserRequestIntoDomainUser() {

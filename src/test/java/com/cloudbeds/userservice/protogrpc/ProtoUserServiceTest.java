@@ -15,11 +15,11 @@ import static com.cloudbeds.userservice.testutils.CreateUserRequestFixtures.crea
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
-class UserServiceTest {
+class ProtoUserServiceTest {
 
     private UserRepository userRepository = mock(UserRepository.class);
-    private GrpcDomainTransformer transformer = new GrpcDomainTransformer();
-    private UserService userService = new UserService(userRepository, transformer);
+    private ProtoDomainTransformer transformer = new ProtoDomainTransformer();
+    private ProtoUserService userService = new ProtoUserService(userRepository, transformer);
 
     @BeforeEach
     public void prepare() {

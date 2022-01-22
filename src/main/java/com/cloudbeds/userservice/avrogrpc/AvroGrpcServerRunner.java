@@ -3,7 +3,6 @@ package com.cloudbeds.userservice.avrogrpc;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
 import io.grpc.ServerServiceDefinition;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.avro.grpc.AvroGrpcServer;
 import org.springframework.beans.factory.annotation.Value;
@@ -13,16 +12,18 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 
 @Slf4j
-@RequiredArgsConstructor
 @Component
-class AvroUserServiceFactory implements SmartLifecycle {
+class AvroGrpcServerRunner implements SmartLifecycle {
 
-    private final UserServiceImpl userService;
-
-    @Value("${user-service.avro-grpc.port}")
-    private int port;
+    private final AvroUserService userService;
+    private final int port;
 
     private Server server;
+
+    AvroGrpcServerRunner(AvroUserService userService, @Value("${user-service.avro-grpc.port}") int port) {
+        this.userService = userService;
+        this.port = port;
+    }
 
     @Override
     public void start() {
