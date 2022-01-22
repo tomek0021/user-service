@@ -27,8 +27,6 @@ class AvroGrpcServerRunner implements SmartLifecycle {
 
     @Override
     public void start() {
-        log.info("Starting avro grpc user service on port {}.", port);
-
         ServerServiceDefinition serviceDefinition = AvroGrpcServer.createServiceDefinition(UserService.class, userService);
         server = ServerBuilder
                 .forPort(port)
@@ -40,7 +38,7 @@ class AvroGrpcServerRunner implements SmartLifecycle {
             throw new RuntimeException("Can't start avro grpc user service.", e);
         }
 
-        log.info("Started avro grpc user service successfully.");
+        log.info("Started avro grpc user service successfully on port{}.", port);
     }
 
     @Override

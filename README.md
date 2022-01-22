@@ -39,13 +39,13 @@ I've covered most of the code with junits and did integration tests with spring 
 
 ##### Creating user with address
 ```shell
-curl -i -X POST -H "Content-Type:application/json" -d '{  "firstName": "first", "lastName": "last", "email2": "em1", "password": "pass", "addresses": [{"addressLine1": "line1", "country": "Poland"}]}}' \
+curl -i -X POST -H "Content-Type:application/json" -d '{  "firstName": "first", "lastName": "last", "email": "em1", "password": "pass", "addresses": [{"addressLine1": "line1", "country": "Poland"}]}}' \
 http://localhost:8080/users
 ```
 
 ##### Finding users per country
 ```shell
-curl "http://localhost:8080/users/search/findByAddresses_Country?country=Poland"
+curl "http://localhost:8080/users/search/byCountry?country=Poland"
 ```
 
 
